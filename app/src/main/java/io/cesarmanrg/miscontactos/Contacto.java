@@ -5,6 +5,7 @@ public class Contacto {
     private String nombre;
     private String telefono;
     private String email;
+    private String like;
 
 
     private int foto;

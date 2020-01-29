@@ -3,4 +3,5 @@
     <string name="nombre">César Manuel Ríos Gómez</string>
     <string name="telefono">4731287190</string>
     <string name="email">cesarmanrg@gmail.com</string>
+    <string name="numero_likes">Likes</string>
 </resources>

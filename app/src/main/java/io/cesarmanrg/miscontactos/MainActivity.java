@@ -1,8 +1,10 @@
 package io.cesarmanrg.miscontactos;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,10 +32,15 @@ public class MainActivity extends AppCompatActivity {
       listaContactos = findViewById(R.id.rvContactos);
 
       // Definir en que forma se presenta el listado
-        Context context;
+
+        /**
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        listaContactos.setLayoutManager(llm);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);**/
+
+        //GridLayoutManager glm = new GridLayoutManager(this, 2);
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        listaContactos.setLayoutManager(staggeredGridLayoutManager);
         inicializarListaContactos();
         inicializarAdaptador();
         /**
@@ -54,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void inicializarAdaptador(){
-        ContactoAdaptador adaptador = new ContactoAdaptador(contactos);
+        ContactoAdaptador adaptador = new ContactoAdaptador(contactos,this);
         listaContactos.setAdapter(adaptador);
     }
 

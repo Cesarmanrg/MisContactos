@@ -7,7 +7,8 @@
     <dimen name="nombre_contacto">33dp</dimen>
     <dimen name="layout_margin_right">10dp</dimen>
     <dimen name="corner_radius_cardview">8dp</dimen>
-    <dimen name="nombre_cardview">20sp</dimen>
+    <dimen name="nombre_cardview">16sp</dimen>
+    <dimen name="texto_cardview">13sp</dimen>
     <dimen name="padding_cardview">10dp</dimen>
     <dimen name="elevation_cardview">4dp</dimen>
 </resources>

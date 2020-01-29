@@ -20,11 +20,10 @@
             android:id="@+id/imgFoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
             android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            />
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvNombre"
@@ -41,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/telefono"
-            android:textSize="@dimen/nombre_cardview"
+            android:textSize="@dimen/texto_cardview"
             android:textStyle="bold" />
 
         <TextView
@@ -49,9 +48,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:text="@string/email"
-            android:textSize="@dimen/nombre_cardview"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:textSize="@dimen/texto_cardview"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnLike"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_me_gusta"
+                android:backgroundTint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvNumeroLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/texto_cardview"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotalLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:text="@string/numero_likes"
+                android:textSize="@dimen/texto_cardview"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
