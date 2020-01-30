@@ -1,78 +1,86 @@
 package io.cesarmanrg.miscontactos;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import android.content.Context;
-import android.content.Intent;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
+import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
+import io.cesarmanrg.miscontactos.adapter.PageAdapter;
+import io.cesarmanrg.miscontactos.fragments.PerfilFragment;
+import io.cesarmanrg.miscontactos.fragments.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Contacto> contactos;
-    private RecyclerView listaContactos;
-
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      contactos = new ArrayList<Contacto>();
+        toolbar = findViewById(R.id.toolbar);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
-      listaContactos = findViewById(R.id.rvContactos);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
-      // Definir en que forma se presenta el listado
+        setUpViewPager();
 
         /**
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);**/
+        contactos = new ArrayList<Contacto>();
+
+        listaContactos = findViewById(R.id.rvContactos);
+
+        // Definir en que forma se presenta el listado
+
+
+         LinearLayoutManager llm = new LinearLayoutManager(this);
+         llm.setOrientation(LinearLayoutManager.VERTICAL);**/
 
         //GridLayoutManager glm = new GridLayoutManager(this, 2);
-
+        /**
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         listaContactos.setLayoutManager(staggeredGridLayoutManager);
         inicializarListaContactos();
         inicializarAdaptador();
-        /**
-        ListView lstContactos = findViewById(R.id.lstContactos);
-        lstContactos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nombresContacto));
-        lstContactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, DetalleContacto.class);
-                intent.putExtra("Nombre", contactos.get(position).getNombre());
-                intent.putExtra("Telefono", contactos.get(position).getTelefono());
-                intent.putExtra("Email", contactos.get(position).getEmail());
-                startActivity(intent);
-                finish();
-            }
+
+         ListView lstContactos = findViewById(R.id.lstContactos);
+         lstContactos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nombresContacto));
+         lstContactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(MainActivity.this, DetalleContacto.class);
+        intent.putExtra("Nombre", contactos.get(position).getNombre());
+        intent.putExtra("Telefono", contactos.get(position).getTelefono());
+        intent.putExtra("Email", contactos.get(position).getEmail());
+        startActivity(intent);
+        finish();
+        }
         });**/
 
+
     }
 
-    public void inicializarAdaptador(){
-        ContactoAdaptador adaptador = new ContactoAdaptador(contactos,this);
-        listaContactos.setAdapter(adaptador);
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
+
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+        return fragments;
     }
 
-    public void inicializarListaContactos(){
+    private void setUpViewPager() {
 
-        contactos = new ArrayList<Contacto>();
-        contactos.add(new Contacto(R.drawable.material_a,"César Manuel ", "4721287190", "a@a.com"));
-        contactos.add(new Contacto(R.drawable.material_b,"Pedro ", "4711287190", "b@a.com"));
-        contactos.add(new Contacto(R.drawable.material_c,"Juan", "4701287190", "c@a.com"));
-        contactos.add(new Contacto(R.drawable.material_d,"Julio", "4751287190", "d@a.com"));
-        contactos.add(new Contacto(R.drawable.material_f,"Mario", "4771287190", "e@a.com"));
-        contactos.add(new Contacto(R.drawable.material_c,"Orl", "4791287190", "f@a.com"));
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_action_name);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_profile);
+
     }
 }

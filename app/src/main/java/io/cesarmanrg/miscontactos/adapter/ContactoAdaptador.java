@@ -1,4 +1,4 @@
-package io.cesarmanrg.miscontactos;
+package io.cesarmanrg.miscontactos.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,12 +9,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import io.cesarmanrg.miscontactos.DetalleContacto;
+import io.cesarmanrg.miscontactos.R;
+import io.cesarmanrg.miscontactos.pojo.Contacto;
 
 public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.ContactoViewHolder> {
 

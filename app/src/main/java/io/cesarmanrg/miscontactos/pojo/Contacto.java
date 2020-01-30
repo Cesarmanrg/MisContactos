@@ -1,4 +1,4 @@
-package io.cesarmanrg.miscontactos;
+package io.cesarmanrg.miscontactos.pojo;
 
 public class Contacto {
 
